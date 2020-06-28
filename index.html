@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Hide Password</title>
+    <script src="https://kit.fontawesome.com/1c2c2462bf.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="formbox">
+            <div class="inner"></div>
+            <div>
+                <i class="fas fa-lock"></i>
+            </div>
+            <div>   
+                <input type="password" 
+                    placeholder="Password" 
+                    id="myPass">
+            </div>
+            <div>
+                <span class="showPass" onclick="toggle()">
+                    <img class="eye-close" 
+                        id="img1" 
+                        src="eye-close.png" 
+                        alt="" 
+                        onclick="myFunction()">
+                </span>
+            </div>    
+        </div>
+    </div>
+    <script>
+        var state = false;
+        var lockIcon = document.querySelector(".fa-lock");
+        var inner = document.querySelector(".inner");
+        function toggle(){
+            if(state){
+                function displayPass(){
+                    document.getElementById("myPass").
+                    setAttribute("type","password");
+                }
+                setTimeout(displayPass,80);
+               
+                lockIcon.classList.remove("color-change");
+                inner.classList.remove("inner-hover");
+                state = false;
+            }
+            else{
+                function displayText(){
+                    document.getElementById("myPass").
+                    setAttribute("type","text");
+                }
+                setTimeout(displayText,80);
+
+                lockIcon.classList.add("color-change");
+                inner.classList.add("inner-hover");
+                state = true;
+            }
+        }
+
+        function myFunction(){
+            var eye = document.querySelector(".eye-close");
+            imgsrc = document.getElementById("img1").src;
+            if(imgsrc.indexOf("eye-close")!= -1){
+                eye.classList.add('eye-open');
+                document.getElementById("img1").
+                src="eye-open.png";
+            }else{
+                eye.classList.remove('eye-open');
+                document.getElementById("img1").
+                src = "eye-close.png";
+            }
+        }
+    </script>
+</body>
+</html>
